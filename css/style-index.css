@@ -28,6 +28,7 @@ body {
 .site-header nav ul {
     list-style: none;
     padding: 0;
+    margin-right: 130px;
 }
 
 .site-header nav ul li {
