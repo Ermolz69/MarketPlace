@@ -7,41 +7,50 @@
     <link rel="stylesheet" href="css/add-product.css">
 </head>
 <body>
-<div class="main-container">
-    <header class="site-header">
-        <div class="header-content">
-            <h1>Kaerna</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="contact.html">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <div class="container">
-        <h2>Добавить новый товар</h2>
-        <form id="add-product-form">
-            <label for="product-name">Название:</label>
+<div class="product-container">
+    <h2>Добавить новый товар</h2>
+    <form id="add-product-form">
+        <div class="input-group">
+            <label for="product-name">Название товара:</label>
             <input type="text" id="product-name" name="name" required>
-            <label for="product-description">Описание:</label>
-            <textarea id="product-description" name="description" required></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="product-short-description">Краткое описание:</label>
+            <textarea id="product-short-description" name="shortDescription" required></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="product-full-description">Полное описание:</label>
+            <textarea id="product-full-description" name="fullDescription" required></textarea>
+        </div>
+
+        <div class="input-group">
             <label for="product-price">Цена:</label>
             <input type="number" id="product-price" name="price" required>
-            <label for="product-image">Фотография:</label>
-            <input type="file" id="product-image" name="image" accept="image/*" required>
-            <button type="submit">Добавить</button>
-        </form>
-    </div>
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Kaerna. Все права защищены.</p>
-            <p>Свяжитесь с нами: info@kaerna.com</p>
         </div>
-    </footer>
+
+        <div class="input-group">
+            <label for="product-category">Категория:</label>
+            <select id="product-category" name="category" required>
+                <option value="">Выберите категорию</option>
+                <option value="desktops">Настольные компьютеры</option>
+                <option value="laptops">Ноутбуки</option>
+                <option value="components">Компоненты</option>
+                <option value="accessories">Аксессуары</option>
+                <option value="peripherals">Периферийные устройства</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="product-image">Фотография товара:</label>
+            <input type="file" id="product-image" name="image" accept="image/*" required>
+        </div>
+
+        <button type="submit">Добавить товар</button>
+    </form>
 </div>
 
-<script src="js/product.js"></script>
+<script src="js/add-product.js"></script>
 </body>
 </html>

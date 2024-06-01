@@ -1,99 +1,49 @@
-document.addEventListener('DOMContentLoaded', () => {
-    initAdminPanel();
+document.addEventListener('DOMContentLoaded', function() {
+    fetchProducts();
 });
 
-function initAdminPanel() {
-    fetch('products.json')
-        .then(response => response.json())
-        .then(data => {
-            products = data;
-            renderProducts();
-        });
+function fetchProducts() {
+    const products = [
+        { id: 1, name: "Ноутбук", price: "50000 руб.", description: "Высокопроизводительный ноутбук" },
+        { id: 2, name: "Клавиатура", price: "7000 руб.", description: "Механическая клавиатура" }
+    ];
 
-    document.getElementById('add-product-btn').addEventListener('click', () => {
-        openEditModal();
-    });
-
-    document.getElementById('edit-form').addEventListener('submit', (event) => {
-        event.preventDefault();
-        const isEditing = document.getElementById('edit-id').value;
-        if (isEditing) {
-            updateProduct();
-        } else {
-            addNewProduct();
-        }
-    });
-
-    document.getElementById('admin-products-list').addEventListener('click', (event) => {
-        if (event.target.className === 'delete') {
-            deleteProduct(event.target.dataset.id);
-        } else if (event.target.className === 'edit') {
-            openEditModal(event.target.dataset.id);
-        }
-    });
-
-    document.querySelector('.close').addEventListener('click', () => {
-        document.getElementById('edit-modal').style.display = 'none';
-    });
-}
-
-function renderProducts() {
-    const list = document.getElementById('admin-products-list');
-    list.innerHTML = '';
+    const tbody = document.getElementById('product-table').getElementsByTagName('tbody')[0];
     products.forEach(product => {
-        const productHTML = `
-            <div class="product-item" data-id="${product.id}">
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <p>Цена: ${product.price}</p>
-                <button class="edit" data-id="${product.id}">Редактировать</button>
-                <button class="delete" data-id="${product.id}">Удалить</button>
-            </div>
-        `;
-        list.innerHTML += productHTML;
+        let row = tbody.insertRow();
+        row.insertCell(0).textContent = product.name;
+        row.insertCell(1).textContent = product.price;
+        row.insertCell(2).textContent = product.description;
+        let actionCell = row.insertCell(3);
+
+        let acceptBtn = document.createElement('button');
+        acceptBtn.textContent = 'Принять';
+        acceptBtn.className = 'accept';
+        acceptBtn.onclick = function() { acceptProduct(product.id); };
+        actionCell.appendChild(acceptBtn);
+
+        let editBtn = document.createElement('button');
+        editBtn.textContent = 'Редактировать';
+        editBtn.className = 'edit';
+        editBtn.onclick = function() { editProduct(product.id); };
+        actionCell.appendChild(editBtn);
+
+        let declineBtn = document.createElement('button');
+        declineBtn.textContent = 'Отклонить';
+        declineBtn.className = 'decline';
+        declineBtn.onclick = function() { declineProduct(product.id); };
+        actionCell.appendChild(declineBtn);
     });
 }
 
-function openEditModal(productId = '') {
-    const modal = document.getElementById('edit-modal');
-    if (productId) {
-        const product = products.find(p => p.id === productId);
-        document.getElementById('edit-id').value = product.id;
-        document.getElementById('edit-name').value = product.name;
-        document.getElementById('edit-description').value = product.description;
-        document.getElementById('edit-price').value = product.price;
-    } else {
-        document.getElementById('edit-id').value = '';
-        document.getElementById('edit-name').value = '';
-        document.getElementById('edit-description').value = '';
-        document.getElementById('edit-price').value = '';
-    }
-    modal.style.display = 'block';
+function acceptProduct(productId) {
+    console.log('Продукт принят:', productId);
 }
 
-function addNewProduct() {
-    const newProduct = {
-        id: `prod-${Date.now()}`,
-        name: document.getElementById('edit-name').value,
-        description: document.getElementById('edit-description').value,
-        price: document.getElementById('edit-price').value
-    };
-    products.push(newProduct);
-    renderProducts();
-    document.getElementById('edit-modal').style.display = 'none';
+function editProduct(productId) {
+    console.log('Редактирование продукта:', productId);
 }
 
-function updateProduct() {
-    const id = document.getElementById('edit-id').value;
-    const product = products.find(p => p.id === id);
-    product.name = document.getElementById('edit-name').value;
-    product.description = document.getElementById('edit-description').value;
-    product.price = document.getElementById('edit-price').value;
-    renderProducts();
-    document.getElementById('edit-modal').style.display = 'none';
-}
-
-function deleteProduct(productId) {
-    products = products.filter(p => p.id !== productId);
-    renderProducts();
+function declineProduct(productId) {
+    console.log('Отклонение продукта:', productId);
 }

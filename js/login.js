@@ -11,6 +11,4 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     } else {
         alert('Неправильный email или пароль. Попробуйте снова.');
     }
-
-
 });

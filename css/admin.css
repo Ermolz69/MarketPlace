@@ -1,103 +1,63 @@
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f4;
-    color: #333;
-}
-
-.main-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.header-content, .site-footer {
-    background-color: #353432;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.header-content nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.header-content nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-.header-content nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background: #fff;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-#add-product-btn {
+.admin-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+button.accept {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 8px 16px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
-#add-product-btn:hover {
-    background-color: #45a049;
-}
-
-#admin-products-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.site-footer p {
-    margin: 0;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+button.edit {
+    background-color: #388E3C;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    margin-right: 20px;
+}
+
+button.decline {
+    background-color: #D32F2F;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+}
+
+button:hover {
+    opacity: 0.9;
 }
